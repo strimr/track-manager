@@ -1,0 +1,21 @@
+sudo: required
+
+branches:
+  only:
+  - master
+
+services:
+- docker
+
+dist: trusty
+
+env:
+- DOCKER_IMAGE=strimr/track-manager
+
+script:
+- PROJECT_VERSION=`mvn help:evaluate -Dexpression=project.version 2>/dev/null | grep -Ev "(^\[|Download)"`
+- docker build -t "$DOCKER_IMAGE:$PROJECT_VERSION-$TRAVIS_BUILD_NUMBER" .
+
+after_success:
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker push "$DOCKER_IMAGE:$PROJECT_VERSION-$TRAVIS_BUILD_NUMBER"
