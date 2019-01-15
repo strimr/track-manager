@@ -11,6 +11,8 @@ kumuluzee:
     checks:
       etcd-health-check:
         connection-url: http://etcd:2379/health
+      http-health-check:
+        connection-url: http://track-metadata:8080/health
   metrics:
     web-instrumentation:
       - name: track-manager-endpoint
