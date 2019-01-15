@@ -1,10 +1,8 @@
 package si.strimr.track.manager.api.v1.resources;
 
-//import io.swagger.annotations.ApiOperation;
-//import io.swagger.annotations.ApiResponse;
-//import io.swagger.annotations.ApiResponses;
 import com.kumuluz.ee.logs.cdi.Log;
 import com.kumuluz.ee.logs.cdi.LogParams;
+import si.strimr.track.manager.models.dtos.TrackMetadata;
 import si.strimr.track.manager.services.TrackManagerBean;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -34,10 +32,10 @@ public class TrackManagerResource {
     @Path("/filtered")
     public Response getTrackManagerFiltered() {
 
-        List<si.strimr.track.manager.models.dtos.TrackMetadata> trackManager;
+        List<TrackMetadata> trackMetadataList;
 
-        trackManager = trackManagerBean.getTrackManagerFilter(uriInfo);
+        trackMetadataList = trackManagerBean.getTrackManagerFilter(uriInfo);
 
-        return Response.status(Response.Status.OK).entity(trackManager).build();
+        return Response.status(Response.Status.OK).entity(trackMetadataList).build();
     }
 }

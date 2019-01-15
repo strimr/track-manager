@@ -13,7 +13,7 @@ spec:
         app: track-manager
     spec:
       containers:
-        - image: strimr/track-manager:1.0.0-SNAPSHOT-29
+        - image: strimr/track-manager:1.0.0-SNAPSHOT-2
           name: track-manager
           env:
             - name: KUMULUZEE_DISCOVERY_CLUSTER
